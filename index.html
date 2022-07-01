@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="greet.js"></script>
+    <script src="enough_airtime.js"></script>
+    <script src="greet-widget.js" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+        //console.log(greet("Masinga"));
+    </script>
+    <style>
+        .message{
+            padding: 1em;
+            background-color: lightgreen;
+            margin-bottom: 1em;
+        }
+        .input > label{
+            display: inline-block;
+            width: 15em;
+            padding: 0.5em;
+            font-weight: bold;
+        }
+        .input > input[type="text"]{
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+        .widgets{
+            display: flex;
+        }
+        .widget{
+            flex: 1;
+            border: 1px solid lightgray;
+            margin: 1em;
+            padding: 1em;
+            border-radius: 0.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="widgets">
+
+        <div class="widget" x-data="greetwidget">
+            <h3>Greet Widget</h3>
+            <div x-show="message.length > 0" class="message" x-text="message">
+                You will be greeted here.....
+            </div>
+    
+            <label for="name">please enter your name: </label>
+            <input type="text" x-model="name" id="name">
+            <button x-on:click="greetMe">Greet!</button>
+        </div>
+        
+        <div class="widget" x-data="{
+            item:'',
+            airtime:'0.00',
+            airtimeMessage:'',
+            Calculate(){
+               this.airtimeMessage= enoughAirtime(this.item, this.airtime)
+               setTimeout(()=>{
+                this.airtimeMessage='';
+            },3000);
+            }
+        }">
+            <h3>Enough Airtime</h3>
+    
+            <div x-show="airtimeMessage.length > 0" class="message" x-text="airtimeMessage">
+                
+            </div>
+    
+            <div class="input">
+                <label for="usage">please enter your airtime usage: </label>
+                <input type="text" x-model="item" id="usage"> 
+            </div>
+            <div class="input">
+                <label for="amount">Amount available </label>
+                <input type="text" x-model="airtime" id="amount"> 
+            </div>
+            <div>
+                <button x-on:click="Calculate">Calculate airtime usage</button>
+            </div>
+        </div>
+
+    </div>
+
+
+ 
+</body>
+</html>
