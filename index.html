@@ -8,6 +8,8 @@
 
     <script src="greet.js"></script>
     <script src="enough_airtime.js"></script>
+    <script src="transport_fee.js"></script>
+    <script src="total_phone_bills.js"></script>
     <script src="greet-widget.js" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script>
@@ -18,6 +20,10 @@
             padding: 1em;
             background-color: lightgreen;
             margin-bottom: 1em;
+        }
+        .cont{
+            padding: 0.5em;
+            margin: 0.1em;
         }
         .input > label{
             display: inline-block;
@@ -50,10 +56,12 @@
             <div x-show="message.length > 0" class="message" x-text="message">
                 You will be greeted here.....
             </div>
-    
-            <label for="name">please enter your name: </label>
-            <input type="text" x-model="name" id="name">
-            <button x-on:click="greetMe">Greet!</button>
+            <div class="cont">
+                <label for="name">please enter your name: </label>
+                <input type="text" x-model="name" id="name">
+            </div>
+            <div class="cont"><button x-on:click="greetMe">Greet!</button></div>
+            
         </div>
         
         <div class="widget" x-data="{
@@ -70,7 +78,7 @@
             <h3>Enough Airtime</h3>
     
             <div x-show="airtimeMessage.length > 0" class="message" x-text="airtimeMessage">
-                
+                Airtime message will be displayed here...
             </div>
     
             <div class="input">
@@ -81,9 +89,51 @@
                 <label for="amount">Amount available </label>
                 <input type="text" x-model="airtime" id="amount"> 
             </div>
-            <div>
+            <div class="cont">
                 <button x-on:click="Calculate">Calculate airtime usage</button>
             </div>
+        </div>
+
+        <div class="widget" x-data="{
+            shift:'',
+            shiftMessage:'',
+            shiftprice(){
+                this.shiftMessage=transportFee(this.shift)
+                setTimeout(()=>{
+                    this.shiftMessage='';
+                },3000);
+            }
+        }">
+            <h3>Transport Fee</h3>
+            <div x-show="shiftMessage.length > 0" class="message" x-text="shiftMessage">
+                shift price will be displayed here....
+            </div>
+            <div class="cont"><label for="shift">please enter shift: </label>
+                <input type="text" x-model="shift" id="shift">
+            </div>
+            <div class="cont"><button x-on:click="shiftprice">shift price</button></div>
+        </div>
+
+        <div class="widget" x-data="{
+            bill:'',
+            billMessage:'',
+            phoneBill(){
+                this.billMessage=totalPhoneBill(this.bill)
+                setTimeout(()=>{
+                    this.billMessage='';
+                },3000);
+            }
+        }">
+            <h3>Total phone bills</h3>
+            <div x-show="billMessage.length > 0" class="message" x-text="billMessage">
+                Your bill message will be displayed here....
+            </div>
+            <div class="cont">
+                <label for="bill">please enter a string: </label>
+                <input type="text" x-model="bill" id="bill">
+            </div>
+            <div class="cont"><button x-on:click="phoneBill">calculate bill</button></div>
+            
         </div>
 
     </div>
