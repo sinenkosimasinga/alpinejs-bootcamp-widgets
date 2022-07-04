@@ -5,7 +5,10 @@ function enoughAirtime (item, airtime){
     var newItem = item.split(",");
     for (var i=0; i<newItem.length; i++){
       var currentItem = newItem[i].trim();
-      if (currentItem.startsWith("s")){
+      if(!item){
+        return "please enter string e.g: call,sms,call and amount below"
+      }
+      else if (currentItem.startsWith("s")){
         count += 0.75;
       }else if(currentItem.startsWith("d")){
         count +=12;

@@ -7,48 +7,25 @@
     <title>Document</title>
 
     <script src="greet.js"></script>
-    <script src="enough_airtime.js"></script>
-    <script src="transport_fee.js"></script>
-    <script src="total_phone_bills.js"></script>
     <script src="greet-widget.js" defer></script>
+
+    <script src="enough_airtime.js"></script>
+    <script src="enough-airtime-widget.js"></script>
+
+    <script src="transport_fee.js"></script>
+    <script src="transport-fee-widget.js"></script>
+
+    <script src="total_phone_bills.js"></script>
+    <script src="total-phone-widget.js"></script>
+
     <script src="//unpkg.com/alpinejs" defer></script>
     <script>
         //console.log(greet("Masinga"));
     </script>
-    <style>
-        .message{
-            padding: 1em;
-            background-color: lightgreen;
-            margin-bottom: 1em;
-        }
-        .cont{
-            padding: 0.5em;
-            margin: 0.1em;
-        }
-        .input > label{
-            display: inline-block;
-            width: 15em;
-            padding: 0.5em;
-            font-weight: bold;
-        }
-        .input > input[type="text"]{
-            padding: 0.5em;
-            margin: 0.5em;
-        }
-        .widgets{
-            display: flex;
-        }
-        .widget{
-            flex: 1;
-            border: 1px solid lightgray;
-            margin: 1em;
-            padding: 1em;
-            border-radius: 0.5em;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <div><h1>Alpinejs BootCamp Widget</h1></div>
     <div class="widgets">
 
         <div class="widget" x-data="greetwidget">
@@ -56,7 +33,7 @@
             <div x-show="message.length > 0" class="message" x-text="message">
                 You will be greeted here.....
             </div>
-            <div class="cont">
+            <div class="input">
                 <label for="name">please enter your name: </label>
                 <input type="text" x-model="name" id="name">
             </div>
@@ -64,17 +41,7 @@
             
         </div>
         
-        <div class="widget" x-data="{
-            item:'',
-            airtime:'0.00',
-            airtimeMessage:'',
-            Calculate(){
-               this.airtimeMessage= enoughAirtime(this.item, this.airtime)
-               setTimeout(()=>{
-                this.airtimeMessage='';
-            },3000);
-            }
-        }">
+        <div class="widget" x-data="enoughairtime">
             <h3>Enough Airtime</h3>
     
             <div x-show="airtimeMessage.length > 0" class="message" x-text="airtimeMessage">
@@ -94,41 +61,23 @@
             </div>
         </div>
 
-        <div class="widget" x-data="{
-            shift:'',
-            shiftMessage:'',
-            shiftprice(){
-                this.shiftMessage=transportFee(this.shift)
-                setTimeout(()=>{
-                    this.shiftMessage='';
-                },3000);
-            }
-        }">
+        <div class="widget" x-data="transportwidget">
             <h3>Transport Fee</h3>
             <div x-show="shiftMessage.length > 0" class="message" x-text="shiftMessage">
                 shift price will be displayed here....
             </div>
-            <div class="cont"><label for="shift">please enter shift: </label>
+            <div class="input"><label for="shift">please enter shift: </label>
                 <input type="text" x-model="shift" id="shift">
             </div>
             <div class="cont"><button x-on:click="shiftprice">shift price</button></div>
         </div>
 
-        <div class="widget" x-data="{
-            bill:'',
-            billMessage:'',
-            phoneBill(){
-                this.billMessage=totalPhoneBill(this.bill)
-                setTimeout(()=>{
-                    this.billMessage='';
-                },3000);
-            }
-        }">
+        <div class="widget" x-data="totalphonewidget">
             <h3>Total phone bills</h3>
             <div x-show="billMessage.length > 0" class="message" x-text="billMessage">
                 Your bill message will be displayed here....
             </div>
-            <div class="cont">
+            <div class="input">
                 <label for="bill">please enter a string: </label>
                 <input type="text" x-model="bill" id="bill">
             </div>
@@ -138,7 +87,5 @@
 
     </div>
 
-
- 
 </body>
 </html>
