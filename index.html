@@ -35,7 +35,7 @@
             </div>
             <div class="input">
                 <label for="name">please enter your name: </label>
-                <input type="text" x-model="name" id="name">
+                <input type="text" placeholder="masinga"  x-model="name" id="name">
             </div>
             <div class="cont"><button x-on:click="greetMe">Greet!</button></div>
             
@@ -50,11 +50,11 @@
     
             <div class="input">
                 <label for="usage">please enter your airtime usage: </label>
-                <input type="text" x-model="item" id="usage"> 
+                <input type="text" placeholder="call,sms"  x-model="item" id="usage"> 
             </div>
             <div class="input">
                 <label for="amount">Amount available </label>
-                <input type="text" x-model="airtime" id="amount"> 
+                <input type="text" placeholder="20" x-model="airtime" id="amount"> 
             </div>
             <div class="cont">
                 <button x-on:click="Calculate">Calculate airtime usage</button>
@@ -66,8 +66,8 @@
             <div x-show="shiftMessage.length > 0" class="message" x-text="shiftMessage">
                 shift price will be displayed here....
             </div>
-            <div class="input"><label for="shift">please enter shift: </label>
-                <input type="text" x-model="shift" id="shift">
+            <div class="input"><label for="shift">please enter shift eg afternoon or night: </label>
+                <input type="text" placeholder="morning"  x-model="shift" id="shift">
             </div>
             <div class="cont"><button x-on:click="shiftprice">shift price</button></div>
         </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="input">
                 <label for="bill">please enter a string: </label>
-                <input type="text" x-model="bill" id="bill">
+                <input type="text" placeholder="call,sms" x-model="bill" id="bill">
             </div>
             <div class="cont"><button x-on:click="phoneBill">calculate bill</button></div>
             
